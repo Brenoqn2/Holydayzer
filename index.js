@@ -34,4 +34,15 @@ app.get("/is-today-holiday", (req, res) => {
   }
 });
 
+app.get("/holidays/:month", (req, res) => {
+  const mes = req.params.month;
+  let feriadosMes = [];
+  holidays.forEach((dia) => {
+    const data = dia.date.split("/");
+    if (data[0] === mes) {
+      feriadosMes.push(dia);
+    }
+  });
+  res.send(feriadosMes);
+});
 app.listen(PORT);
