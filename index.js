@@ -24,4 +24,14 @@ app.get("/holidays", (req, res) => {
   res.send(holidays);
 });
 
+app.get("/is-today-holiday", (req, res) => {
+  const hoje = new Date().toLocaleDateString("en-US");
+  const feriado = holidays.find((dia) => dia.date === hoje);
+  if (feriado) {
+    res.send(`Sim, hoje é ${feriado.name}`);
+  } else {
+    res.send("Não, hoje não é feriado");
+  }
+});
+
 app.listen(PORT);
